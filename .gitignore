@@ -1,0 +1,56 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userprefs
+
+# VS Code
+.vscode/
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Publicação
+publish/
+*.pubxml
+*.pubxml.user
+
+# Uploads de usuários (gerados em runtime)
+src/LeveGestao.Web/wwwroot/uploads/
+
+# JavaScript compilado a partir de TypeScript
+src/LeveGestao.Web/wwwroot/js/site.js
+src/LeveGestao.Web/wwwroot/js/site.js.map
+
+# Node
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Backups
+*.bak
+*~
+
+# Claude Code
+.claude/
+
+# PDF do desafio
+*.pdf
+
+# Solution duplicado dentro do projeto web
+src/LeveGestao.Web/*.sln
