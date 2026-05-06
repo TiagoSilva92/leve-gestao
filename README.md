@@ -36,8 +36,8 @@ node --version     # deve retornar v18.x ou superior
 ### 1. Clone o repositório
 
 ```bash
-git clone <url-do-repositorio>
-cd projeto-case
+git clone https://github.com/TiagoSilva92/leve-gestao.git
+cd leve-gestao
 ```
 
 ### 2. Restaure os pacotes
@@ -112,7 +112,7 @@ dotnet ef database update --project src/LeveGestao.Infrastructure --startup-proj
 dotnet run --project src/LeveGestao.Web/LeveGestao.Web.csproj
 ```
 
-Acesse: `http://localhost:5000`
+Acesse: `https://localhost:61458` (ou `http://localhost:61459`)
 
 ### Via Visual Studio 2022
 
