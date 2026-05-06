@@ -1,0 +1,107 @@
+@model UsuarioViewModel
+@{
+    ViewData["Title"] = "Editar usuário";
+}
+
+<h2>Editar usuário</h2>
+<p><a asp-action="Index">Voltar para usuários</a></p>
+
+<form asp-action="Editar" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data" class="uk-form-stacked">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="FotoPathAtual" />
+
+    <div asp-validation-summary="ModelOnly" class="uk-alert-danger" uk-alert></div>
+
+    <div class="uk-card uk-card-default uk-card-body uk-margin-bottom">
+        <h4 class="uk-card-title">Dados pessoais</h4>
+
+        <div class="uk-margin">
+            <label asp-for="NomeCompleto" class="uk-form-label"></label>
+            <input asp-for="NomeCompleto" class="uk-input" />
+            <span asp-validation-for="NomeCompleto" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="DataNascimento" class="uk-form-label"></label>
+            <input asp-for="DataNascimento" class="uk-input" type="date" />
+            <span asp-validation-for="DataNascimento" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="Email" class="uk-form-label"></label>
+            <input asp-for="Email" class="uk-input" type="email" />
+            <span asp-validation-for="Email" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="TelefoneCelular" class="uk-form-label"></label>
+            <input asp-for="TelefoneCelular" class="uk-input" />
+            <span asp-validation-for="TelefoneCelular" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="TelefoneFixo" class="uk-form-label"></label>
+            <input asp-for="TelefoneFixo" class="uk-input" />
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">
+                <input asp-for="IsGestor" type="checkbox" class="uk-checkbox" />
+                @Html.DisplayNameFor(m => m.IsGestor)
+            </label>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="Foto" class="uk-form-label">Foto do usuário</label>
+            <input asp-for="Foto" type="file" accept="image/*" class="uk-input" />
+        </div>
+    </div>
+
+    <div class="uk-card uk-card-default uk-card-body uk-margin-bottom">
+        <h4 class="uk-card-title">Endereço</h4>
+
+        <div class="uk-margin">
+            <label asp-for="Logradouro" class="uk-form-label"></label>
+            <input asp-for="Logradouro" class="uk-input" />
+            <span asp-validation-for="Logradouro" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="Numero" class="uk-form-label"></label>
+            <input asp-for="Numero" class="uk-input" />
+            <span asp-validation-for="Numero" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="Complemento" class="uk-form-label"></label>
+            <input asp-for="Complemento" class="uk-input" />
+        </div>
+        <div class="uk-margin">
+            <label asp-for="Bairro" class="uk-form-label"></label>
+            <input asp-for="Bairro" class="uk-input" />
+            <span asp-validation-for="Bairro" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="Cidade" class="uk-form-label"></label>
+            <input asp-for="Cidade" class="uk-input" />
+            <span asp-validation-for="Cidade" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="Cep" class="uk-form-label"></label>
+            <input asp-for="Cep" class="uk-input" />
+            <span asp-validation-for="Cep" class="uk-text-danger uk-text-small"></span>
+        </div>
+        <div class="uk-margin">
+            <label asp-for="Estado" class="uk-form-label"></label>
+            <select asp-for="Estado" class="uk-select">
+                <option value="">Selecione...</option>
+                @foreach (var uf in new[] { "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO" })
+                {
+                    <option value="@uf">@uf</option>
+                }
+            </select>
+            <span asp-validation-for="Estado" class="uk-text-danger uk-text-small"></span>
+        </div>
+    </div>
+
+    <div class="uk-margin-top">
+        <button type="submit" class="uk-button uk-button-primary">Salvar</button>
+        <a asp-action="Index" class="uk-button uk-button-default">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

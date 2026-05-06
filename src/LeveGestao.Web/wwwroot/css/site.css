@@ -1,0 +1,59 @@
+:root {
+    --leve-primary: #c0392b;
+    --leve-dark: #2c3e50;
+}
+
+.uk-navbar-container {
+    background: var(--leve-dark) !important;
+    border-bottom: 3px solid var(--leve-primary);
+}
+
+.uk-navbar-container .uk-navbar-nav > li > a {
+    color: #ecf0f1 !important;
+    font-size: 0.9rem;
+}
+
+.uk-navbar-container .uk-navbar-nav > li > a:hover {
+    color: #fff !important;
+    border-bottom: 2px solid var(--leve-primary);
+}
+
+.uk-navbar-container .uk-logo {
+    color: #fff !important;
+    font-size: 1.2rem;
+}
+
+.uk-navbar-container .uk-text-primary {
+    color: var(--leve-primary) !important;
+}
+
+.leve-login-bg {
+    background: var(--leve-dark);
+}
+
+.leve-login-card {
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.leve-login-card .uk-text-primary {
+    color: var(--leve-primary) !important;
+}
+
+
+.uk-button-primary {
+    background: var(--leve-primary);
+}
+
+.uk-button-primary:hover {
+    background: #a93226;
+}
+
+.uk-button-success {
+    background: #27ae60 !important;
+    color: #fff !important;
+}
+
+.uk-button-success:hover {
+    background: #219a52 !important;
+}

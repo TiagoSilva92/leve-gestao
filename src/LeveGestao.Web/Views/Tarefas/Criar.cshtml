@@ -1,0 +1,48 @@
+@model TarefaViewModel
+@{
+    ViewData["Title"] = "Nova tarefa";
+}
+
+<h2>Nova tarefa</h2>
+<p><a asp-action="Index">Voltar para a lista</a></p>
+
+<div class="uk-card uk-card-default uk-card-body">
+    <form asp-action="Criar" method="post" class="uk-form-stacked">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="uk-alert-danger" uk-alert></div>
+
+        <div class="uk-margin">
+            <label asp-for="SubordinadoId" class="uk-form-label"></label>
+            <select asp-for="SubordinadoId" asp-items="Model.SubordinadosDisponiveis" class="uk-select">
+                <option value="">-- Selecione o colaborador --</option>
+            </select>
+            <span asp-validation-for="SubordinadoId" class="uk-text-danger uk-text-small"></span>
+        </div>
+
+        <div class="uk-margin">
+            <label asp-for="Mensagem" class="uk-form-label"></label>
+            <textarea asp-for="Mensagem" class="uk-textarea" rows="4"
+                      placeholder="Descreva a tarefa detalhadamente..."></textarea>
+            <span asp-validation-for="Mensagem" class="uk-text-danger uk-text-small"></span>
+        </div>
+
+        <div class="uk-margin">
+            <label asp-for="DataLimite" class="uk-form-label"></label>
+            <input asp-for="DataLimite" class="uk-input" type="date"
+                   min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            <span asp-validation-for="DataLimite" class="uk-text-danger uk-text-small"></span>
+        </div>
+
+        <p class="uk-text-muted uk-text-small">O colaborador receberá um e-mail quando a tarefa for criada.</p>
+
+        <div class="uk-margin-top">
+            <button type="submit" class="uk-button uk-button-primary">Salvar</button>
+            <a asp-action="Index" class="uk-button uk-button-default">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,79 @@
+@model TarefaDetalhesViewModel
+@{
+    ViewData["Title"] = "Detalhes da tarefa";
+}
+
+<h2>Detalhes da tarefa</h2>
+
+<div class="uk-card uk-card-default uk-card-body">
+
+    @if (Model.Atrasada)
+    {
+        <div class="uk-alert-danger" uk-alert>
+            <span uk-icon="warning"></span> Esta tarefa está <strong>atrasada</strong>! Prazo era @Model.DataLimite.ToString("dd/MM/yyyy").
+        </div>
+    }
+
+    <table class="uk-table uk-table-divider">
+        <tbody>
+            <tr>
+                <td><strong>Status</strong></td>
+                <td><span class="uk-badge">@Model.StatusDescricao</span></td>
+            </tr>
+            <tr>
+                <td><strong>Descrição</strong></td>
+                <td>@Model.Mensagem</td>
+            </tr>
+            <tr>
+                <td><strong>Data limite</strong></td>
+                <td class="@(Model.Atrasada ? "uk-text-danger" : "")">
+                    @Model.DataLimite.ToString("dd/MM/yyyy")
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Responsável</strong></td>
+                <td>@Model.NomeSubordinado</td>
+            </tr>
+            <tr>
+                <td><strong>Criada por</strong></td>
+                <td>@Model.NomeGestor</td>
+            </tr>
+            <tr>
+                <td><strong>Criada em</strong></td>
+                <td>@Model.CriadaEm.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+            @if (Model.ConcluidaEm.HasValue)
+            {
+                <tr>
+                    <td><strong>Concluída em</strong></td>
+                    <td>@Model.ConcluidaEm.Value.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="uk-margin-top">
+        <a asp-action="Index" class="uk-button uk-button-default">Voltar</a>
+
+        @if (Model.PodeAlterar)
+        {
+            @if (Model.Status == StatusTarefa.Pendente)
+            {
+                <button class="uk-button uk-button-primary"
+                        data-action-url="/api/tarefas/@Model.Id/iniciar"
+                        data-confirm="Iniciar o andamento desta tarefa?">
+                    Iniciar andamento
+                </button>
+            }
+
+            @if (Model.Status == StatusTarefa.EmAndamento)
+            {
+                <button class="uk-button uk-button-success"
+                        data-action-url="/api/tarefas/@Model.Id/concluir"
+                        data-confirm="Marcar como concluída?">
+                    Marcar como concluída
+                </button>
+            }
+        }
+    </div>
+</div>

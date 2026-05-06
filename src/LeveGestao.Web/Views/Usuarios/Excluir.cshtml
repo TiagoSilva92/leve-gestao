@@ -1,0 +1,37 @@
+@model UsuarioListaViewModel
+@{
+    ViewData["Title"] = "Excluir usuário";
+}
+
+<h2>Excluir usuário</h2>
+
+<div class="uk-card uk-card-default uk-card-body">
+
+    <div class="uk-alert-danger" uk-alert>
+        <span uk-icon="warning"></span> Tem certeza que deseja excluir este usuário? Esta ação não pode ser desfeita.
+    </div>
+
+    <table class="uk-table uk-table-divider">
+        <tbody>
+            <tr>
+                <td><strong>Nome</strong></td>
+                <td>@Model.NomeCompleto</td>
+            </tr>
+            <tr>
+                <td><strong>E-mail</strong></td>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td><strong>Perfil</strong></td>
+                <td>@(Model.IsGestor ? "Gestor" : "Colaborador")</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form asp-action="Excluir" method="post" class="uk-margin-top">
+        <input type="hidden" asp-for="Id" />
+        <a asp-action="Index" class="uk-button uk-button-default">Cancelar</a>
+        <button type="submit" class="uk-button uk-button-danger">Confirmar exclusão</button>
+    </form>
+
+</div>

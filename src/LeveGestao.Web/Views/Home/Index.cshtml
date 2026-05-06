@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Início";
+}
+
+<h2>Olá, @User.Identity?.Name!</h2>
+
+<p>Bem-vindo ao sistema de gestão da LEVE Investimentos.</p>
+
+<div class="uk-margin-top">
+    @if (User.IsInRole("Gestor"))
+    {
+        <a asp-controller="Usuarios" asp-action="Index" class="uk-button uk-button-default uk-margin-small-right">Ver usuários</a>
+        <a asp-controller="Tarefas" asp-action="Criar" class="uk-button uk-button-primary uk-margin-small-right">Criar tarefa</a>
+    }
+    <a asp-controller="Tarefas" asp-action="Index" class="uk-button uk-button-default">Ver tarefas</a>
+</div>

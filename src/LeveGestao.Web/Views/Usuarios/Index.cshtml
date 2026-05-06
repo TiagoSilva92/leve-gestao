@@ -1,0 +1,57 @@
+@model IEnumerable<UsuarioListaViewModel>
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+<h2 class="uk-heading">Usuários</h2>
+
+<div class="uk-margin-bottom">
+    <a asp-action="Cadastrar" class="uk-button uk-button-primary">Novo usuário</a>
+</div>
+
+@if (!Model.Any())
+{
+    <p class="uk-text-muted">Nenhum usuário cadastrado.</p>
+}
+else
+{
+    <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-striped uk-table-hover uk-table-middle">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Celular</th>
+                    <th>Perfil</th>
+                    <th class="uk-text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var u in Model)
+                {
+                    <tr>
+                        <td>@u.NomeCompleto</td>
+                        <td>@u.Email</td>
+                        <td>@u.TelefoneCelular</td>
+                        <td>
+                            @if (u.IsGestor)
+                            {
+                                <span class="uk-badge uk-background-primary">Gestor</span>
+                            }
+                            else
+                            {
+                                <span class="uk-badge">Colaborador</span>
+                            }
+                        </td>
+                        <td class="uk-text-center">
+                            <a asp-action="Editar" asp-route-id="@u.Id"
+                               class="uk-button uk-button-primary uk-button-small">Editar</a>
+                            <a asp-action="Excluir" asp-route-id="@u.Id"
+                               class="uk-button uk-button-danger uk-button-small">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

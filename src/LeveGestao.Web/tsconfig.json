@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "none",
+    "strict": true,
+    "types": ["jquery"]
+  },
+  "include": [
+    "wwwroot/js/site.ts"
+  ]
+}

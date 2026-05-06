@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LEVE Investimentos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.0/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left uk-margin-left">
+            <a class="uk-navbar-item uk-logo" asp-controller="Home" asp-action="Index">
+                <span class="uk-text-bold uk-text-primary">LEVE</span>&nbsp;Gestão
+            </a>
+        </div>
+        <div class="uk-navbar-right uk-margin-right">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a asp-controller="Home" asp-action="Index">Dashboard</a>
+                </li>
+                @if (User.IsInRole("Gestor"))
+                {
+                    <li>
+                        <a asp-controller="Usuarios" asp-action="Index">Usuários</a>
+                    </li>
+                }
+                <li>
+                    <a asp-controller="Tarefas" asp-action="Index">Tarefas</a>
+                </li>
+                <li>
+                    <a href="#">
+                        @User.Identity!.Name <span uk-navbar-parent-icon></span>
+                    </a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li>
+                                <form asp-controller="Account" asp-action="Logout" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="uk-button uk-button-link">Sair</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+}
+
+<div class="uk-container uk-container-large uk-margin-top uk-margin-bottom">
+
+    @if (TempData["Sucesso"] != null)
+    {
+        <div class="uk-alert-success uk-margin-bottom" uk-alert>
+            <a href="#" class="uk-alert-close" uk-close></a>
+            <p>@TempData["Sucesso"]</p>
+        </div>
+    }
+
+    @if (TempData["Erro"] != null)
+    {
+        <div class="uk-alert-danger uk-margin-bottom" uk-alert>
+            <a href="#" class="uk-alert-close" uk-close></a>
+            <p>@TempData["Erro"]</p>
+        </div>
+    }
+
+    @RenderBody()
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.0/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.0/dist/js/uikit-icons.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="~/js/site.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
